@@ -27,16 +27,16 @@ def handle_message(update: Update, context: CallbackContext) -> None:
     # Traduci il messaggio in base alla lingua rilevata
     if detected_lang == 'fr':
         translated_text = translator.translate(message, dest='it').text
-        response = f"Traduzione in italiano:\n{translated_text}"
+        response = f"Italiano:\n{translated_text}"
     elif detected_lang == 'it':
         translated_text = translator.translate(message, dest='fr').text
-        response = f"Traduzione in francese:\n{translated_text}"
+        response = f"Français:\n{translated_text}"
     elif detected_lang == 'en':
         translated_text_fr = translator.translate(message, dest='fr').text
         translated_text_it = translator.translate(message, dest='it').text
-        response = f"Traduzione in francese:\n{translated_text_fr}\n\nTraduzione in italiano:\n{translated_text_it}"
+        response = f"Italiano:\n{translated_text_it}\n\nFrançais:\n{translated_text_fr}"
     else:
-        response = "Lingua non supportata per la traduzione."
+        response = "Language not supported for translation."
 
     # Rispondi al messaggio con la traduzione
     context.bot.send_message(chat_id=chat_id, text=response, reply_to_message_id=message_id)
